@@ -11,7 +11,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://frontend.com",
+    origin: "https://master.d3mswxqa7vdfhx.amplifyapp.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
