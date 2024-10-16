@@ -11,7 +11,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://master.d3mswxqa7vdfhx.amplifyapp.com",
+    origin: [
+      "https://master.d3mswxqa7vdfhx.amplifyapp.com",
+      "http://localhost:3000",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
