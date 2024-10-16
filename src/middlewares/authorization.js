@@ -3,7 +3,7 @@ import { JWT_CONFIG } from "../configs/jwtConfig.js";
 
 export const authorize = (req, res, next) => {
   try {
-    const accesstoken = req?.cookies?.signup_accesstoken;
+    const accesstoken = req.headers.authorization?.split(" ")?.[1];
     const data = jsonwebtoken.verify(accesstoken, JWT_CONFIG.secret_key);
     if (Date.now() / 1000 - data?.exp > 0) {
       return res.status(401).send({
@@ -15,12 +15,10 @@ export const authorize = (req, res, next) => {
     next();
   } catch (e) {
     if (e?.name === "JsonWebTokenError") {
-      return res
-        .status(401)
-        .send({
-          status: "FAILED",
-          data: "You are not authorized for this request",
-        });
+      return res.status(401).send({
+        status: "FAILED",
+        data: "You are not authorized for this request",
+      });
     }
     throw new Error();
   }
