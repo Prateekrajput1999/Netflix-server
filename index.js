@@ -9,7 +9,13 @@ import { LoginRouter } from "./src/routes/loginRouter.js";
 
 const app = express();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://frontend.com",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 app.use(bodyParser.json());
 
